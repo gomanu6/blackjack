@@ -1,0 +1,45 @@
+{
+	"name": "blackjack",
+	"version": "1.0.0",
+	"description": "Blackjack with React",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"serve": "webpack serve",
+		"dist": "webpack"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gomanu6/blackjack.git"
+	},
+	"keywords": [
+		"Blackjack",
+		"React",
+		"Javascript"
+	],
+	"author": "Manu",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/gomanu6/blackjack/issues"
+	},
+	"homepage": "https://github.com/gomanu6/blackjack#readme",
+	"dependencies": {
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.12.10",
+		"@babel/plugin-proposal-class-properties": "^7.12.1",
+		"@babel/preset-env": "^7.12.11",
+		"@babel/preset-react": "^7.12.10",
+		"babel-loader": "^8.2.2",
+		"clean-webpack-plugin": "^3.0.0",
+		"css-loader": "^5.0.1",
+		"html-webpack-plugin": "^4.5.0",
+		"mini-css-extract-plugin": "^1.3.3",
+		"style-loader": "^2.0.0",
+		"webpack": "^5.11.0",
+		"webpack-cli": "^4.3.0",
+		"webpack-dev-server": "^3.11.0"
+	}
+}
