@@ -19,7 +19,6 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "[name].[bundle].js",
-		assetModuleFilename: "images/[hash][ext][query]",
 	},
 	devServer: {
 		open: true,
@@ -30,13 +29,12 @@ module.exports = {
 		runtimeChunk: "single",
 		moduleIds: "deterministic",
 		splitChunks: {
-			chunks: "all",
-		},
-		cacheGroups: {
-			vendor: {
-				test: /[\\/]node_modules[\\/]/,
-				name: "vendors",
-				chunks: "all",
+			cacheGroups: {
+				vendor: {
+					test: /[\\/]node_modules[\\/]/,
+					name: "vendors",
+					chunks: "all",
+				},
 			},
 		},
 	},
@@ -47,14 +45,11 @@ module.exports = {
 				use: [MiniCssExtractPlugin.loader, "css-loader"],
 				include: path.resolve(__dirname, "src"),
 			},
-			{
-				test: /\.(htm|html)$/i,
-				type: "asset/resource",
-				include: path.resolve(__dirname, "src"),
-			},
+
 			{
 				test: /\.js$/,
 				include: path.resolve(__dirname, "src"),
+				exclude: /(node_modules|bower_components)/,
 				loader: "babel-loader",
 			},
 			{
