@@ -1,9 +1,12 @@
 import React from "react";
 
+import Hand from "./components/Hand";
+
 const App = () => {
 	return (
 		<div>
-			<div>Hello</div>
+			<Hand />
+			<div>No One is Winning</div>
 		</div>
 	);
 };
