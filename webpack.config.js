@@ -18,7 +18,7 @@ module.exports = {
 		filename: "[name].[bundle].js",
 	},
 	devServer: {
-		open: true,
+		open: false,
 		contentBase: "./dist",
 		hot: true,
 	},
