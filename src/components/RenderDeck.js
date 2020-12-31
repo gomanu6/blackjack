@@ -1,42 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./card.module.css";
 import Card from "./Card";
 
 const Deck = (props) => {
+	const [deck, setDeck] = useState([]);
+
 	let suites = ["Spades", "Hearts", "Clubs", "Diamonds"];
 	let faceCards = ["J", "Q", "K", "A"];
-	let deck = [];
 
 	const createDeck = () => {
-		deck = [];
+		console.log("Setting the Deck...");
+		let newDeck = [];
 		for (let i = 0; i < suites.length; i++) {
 			for (let j = 2; j <= 10; j++) {
-				deck.push({
+				newDeck.push({
 					id: j + suites[i],
-					Name: j + " of " + suites[i],
+					name: j + " of " + suites[i],
 					value: j,
-					Suite: suites[i],
+					suite: suites[i],
 					"Blackjack-Value": j,
 				});
 			}
 
 			for (let k = 0; k < faceCards.length; k++) {
-				deck.push({
-					Id: faceCards[k] + suites[i],
-					Name: faceCards[k] + " of " + suites[i],
-					Value: faceCards[k],
-					Suite: suites[i],
+				newDeck.push({
+					id: faceCards[k] + suites[i],
+					name: faceCards[k] + " of " + suites[i],
+					value: faceCards[k],
+					suite: suites[i],
 					"Blackjack-Value": faceCards[k] === "A" ? [1, 10] : 10,
 				});
 			}
 		}
-		// console.log(deck);
-		return deck;
+
+		return newDeck;
 	};
 
 	const shuffleDeck = (array) => {
 		//copied from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-
 		var currentIndex = array.length,
 			temporaryValue,
 			randomIndex;
@@ -55,29 +56,44 @@ const Deck = (props) => {
 
 	const createNewDeck = () => {
 		console.log("Creating New Deck...");
-		createDeck();
-		console.log(deck);
-		return deck;
+		const theDeck = createDeck();
+		setDeck(theDeck);
+		console.log("The Deck has been set...");
 	};
 
 	const shuffleTheDeck = () => {
 		console.log("shuffling the Deck...");
-		shuffleDeck(deck);
-		console.log(deck);
-		return deck;
+		const deckToShuffle = deck;
+		const shuffledDeck = shuffleDeck(deckToShuffle);
+		setDeck(shuffledDeck);
+
+		// if (deck.length < 2) {
+		// 	console.log("The deck is empty...");
+		// } else {
+		// 	console.log("shuffling the Deck...");
+		// 	const deckToShuffle = deck;
+		// 	const shuffledDeck = shuffleDeck(deckToShuffle);
+		// 	setDeck(shuffledDeck);
+		// 	console.log("The Deck has been shuffled...");
+		// }
 	};
 
 	const deckArr = deck.map((card) => {
-		return <div key={card.Id}>Card</div>;
+		return (
+			<Card
+				key={card.id}
+				className={styles.card}
+				value={card.value}
+				suite={card.suite}
+			></Card>
+		);
 	});
-	console.log(deck);
-	console.log(deckArr);
 
 	return (
 		<div>
 			<div>
-				<button onClick={createNewDeck}>Create Deck</button>
-				<button onClick={() => shuffleTheDeck(deck)}>Shuffle Deck</button>
+				<button onClick={createNewDeck}>Set Deck</button>
+				<button onClick={shuffleTheDeck}>Shuffle Deck</button>
 				{/* <button onClick={createDeck}>Create Deck</button>
 				<button onClick={shuffleDeck(deck)}>Shuffle Deck</button> */}
 			</div>
